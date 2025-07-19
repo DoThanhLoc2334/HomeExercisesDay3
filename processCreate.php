@@ -1,7 +1,8 @@
 <?php
-include 'connectDb.php'; 
+include 'connectDb.php';
 $conn = connectDb();
 
+$id = $_POST['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];
 $quantity = $_POST['quantity'];
@@ -14,18 +15,22 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
     $targetFile = $uploadDir . $imageName;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-        $imagePath = $targetFile;
+        $imagePath = $imageName; 
     }
 }
 
-$sql = "INSERT INTO products (name, price, stock, image) 
-        VALUES ('$name', '$price', '$quantity', '$imagePath')";
+if (!empty($imagePath)) {
+    $sql = "UPDATE products SET name='$name', price='$price', stock='$quantity', image='$imagePath' WHERE id=$id";
+} else {
+    $sql = "UPDATE products SET name='$name', price='$price', stock='$quantity' WHERE id=$id";
+}
 
 if ($conn->query($sql) === TRUE) {
     header("Location: viewProduct.php");
     exit();
 } else {
-    echo "Lỗi: " . $conn->error;
+    header("Location: updateProduct.php?id=$id");
+    exit();
 }
 
 $conn->close();
