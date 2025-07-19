@@ -35,7 +35,7 @@ $result = $conn->query($sql);
                 <td><?php echo $row['username']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td>
-                    <a href="editUser.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="updateUser.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Update</a>
                     <a href="deleteUser.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
