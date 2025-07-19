@@ -59,10 +59,10 @@
                         echo "<td>" . htmlspecialchars(number_format($row['price'], 2)) . "</td>";
                         echo "<td>" . htmlspecialchars($row['stock']) . "</td>";
                         echo "<td><img src='" . htmlspecialchars($row['image']) . "' alt='Product Image' width='80' height='80'></td>";
-                        echo "<td>
-                            <a href='updateProduct.php?id=" . $row['id'] . "' class='btn btn-success btn-sm'>Update</a>
-                            <a href='deleteProduct.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm'>Delete</a>
-                        </td>";
+echo "<td>
+    <a href='updateProduct.php?id=" . $row['id'] . "' class='btn btn-success btn-sm'>Update</a>
+    <a href='deleteProduct.php?id=" . $row['id'] . "' class='btn btn-danger btn-sm' onclick=\"return confirm('Bạn có chắc muốn xóa sản phẩm này không?');\">Delete</a>
+</td>";
                         echo "</tr>";
                     }
                 } else {
